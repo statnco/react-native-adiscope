@@ -66,6 +66,33 @@ dependencies {
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
+
+  // [required] adiscope library
+  implementation 'com.nps.adiscope:adiscopeCore:3.0.0.0'
+  implementation 'com.nps.adiscope:adiscopeAndroid:1.1.8'
+  // adiscope sdk have to extract Google Advertising Id.
+  // if com.google.android.gms.ads.identifier.AdvertisingIdClient class is not included in your
+  // implementation 'com.google.android.gms:play-services-basement:8.3.0'
+  // [optional] adiscope rewarded video networks
+  implementation 'com.nps.adiscope:adapter.admob:20.6.0.4' // admob (use play-services-ad
+  implementation 'com.nps.adiscope:adapter.chartboost:8.4.2.2' // chartboost
+  implementation 'com.nps.adiscope:adapter.ironsource:7.2.1.3' // ironsource
+  implementation 'com.nps.adiscope:adapter.unityads:4.2.1.1' // unityads
+  implementation 'com.nps.adiscope:adapter.max:11.9.0.0' // max
+  implementation 'com.applovin:applovin-sdk:11.9.0' // applovin 앱러빈은 직접 참조 해야함
+  /****************************
+  max lib를 사용하더라도 max bidder로 포함되어 있는 네트워크의 워터폴을 사용하실 경우,
+  해당 네트워크 어댑터 참조를 선택적으로 하시면 됩니다.
+  (아래 네트워크들이 max bidder에 포함됨)
+  *****************************/
+//   implementation 'com.nps.adiscope:adapter.applovin:11.9.0.0' // applovin
+//   implementation 'com.nps.adiscope:adapter.fan:6.13.7.0' // fan
+//   implementation 'com.nps.adiscope:adapter.inmobi:10.1.3.4.0' // inmobi
+//   implementation 'com.nps.adiscope:adapter.mobvista:16.4.31.0' // mobvista (use androidx)
+//   implementation "com.nps.adiscope:adapter.pangle:5.1.0.8.0" // pangle
+//   implementation 'com.nps.adiscope:adapter.smaato:22.1.0.0' // smaato
+//   implementation 'com.nps.adiscope:adapter.tapjoy:12.11.1.2' // tapjoy
+//   implementation 'com.nps.adiscope:adapter.vungle:6.12.1.1' // vungle (use androidx)
 }
 
 if (isNewArchitectureEnabled()) {
@@ -73,5 +100,13 @@ if (isNewArchitectureEnabled()) {
     jsRootDir = file("../src/")
     libraryName = "ReactNativeAdiscopeView"
     codegenJavaPackageName = "com.statnco.reactnativeadiscope"
+  }
+}
+
+rootProject.allprojects {
+  repositories {
+    maven {
+      url 'https://repository.adiscope.com/repository/adiscope/'
+    }
   }
 }
