@@ -16,9 +16,9 @@ type ReactNativeAdiscopeProps = {
   style: ViewStyle;
 };
 
-const ComponentName = 'ReactNativeAdiscopeView';
+const ComponentName = 'RNAdiscopeView';
 
-export const ReactNativeAdiscopeView =
+export const RNAdiscopeView =
   UIManager.getViewManagerConfig(ComponentName) != null
     ? requireNativeComponent<ReactNativeAdiscopeProps>(ComponentName)
     : () => {

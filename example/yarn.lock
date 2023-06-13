@@ -1487,6 +1487,9 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@statnco/react-native-adiscope@file:..":
+  version "0.1.0"
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.4.tgz#8467d4b3c087805d63580480890791277ce35c44"
