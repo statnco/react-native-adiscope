@@ -10,7 +10,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 
 public class RNAdiscopeViewManager extends SimpleViewManager<View> {
-  public static final String REACT_CLASS = "ReactNativeAdiscopeView";
+  public static final String REACT_CLASS = "RNAdiscopeView";
 
   @Override
   @NonNull

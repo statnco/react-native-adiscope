@@ -98,7 +98,7 @@ dependencies {
 if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
-    libraryName = "ReactNativeAdiscopeView"
+    libraryName = "RNAdiscopeView"
     codegenJavaPackageName = "com.statnco.reactnativeadiscope"
   }
 }
