@@ -1,26 +1,38 @@
-import {
-  requireNativeComponent,
-  UIManager,
-  Platform,
-  ViewStyle,
-} from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { UIManager, PixelRatio, findNodeHandle } from 'react-native';
+import { RNAdiscopeViewManager } from './RNAdiscopeViewManager';
 
-const LINKING_ERROR =
-  `The package '@statnco/react-native-adiscope' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+const createFragment = (viewId) =>
+  UIManager.dispatchViewManagerCommand(
+    viewId,
+    UIManager.RNAdiscopeViewManager.Commands.create.toString(),
+    [viewId]
+  );
 
-type ReactNativeAdiscopeProps = {
-  color: string;
-  style: ViewStyle;
+export const RNAdiscopeView = (props) => {
+  const ref = useRef(null);
+  useEffect(() => {
+    const viewId = findNodeHandle(ref.current);
+    createFragment(viewId);
+  }, []);
+
+  const _onChange = (event) => {
+    if (!props.onChangeMessage) {
+      return;
+    }
+    props.onChangeMessage(event.nativeEvent.message);
+  };
+  return (
+    <RNAdiscopeViewManager
+      {...props}
+      onChange={_onChange}
+      style={{
+        // converts dpi to px, provide desired height
+        height: PixelRatio.getPixelSizeForLayoutSize(120),
+        // converts dpi to px, provide desired width
+        width: PixelRatio.getPixelSizeForLayoutSize(120),
+      }}
+      ref={ref}
+    />
+  );
 };
-
-const ComponentName = 'RNAdiscopeView';
-
-export const RNAdiscopeView =
-  UIManager.getViewManagerConfig(ComponentName) != null
-    ? requireNativeComponent<ReactNativeAdiscopeProps>(ComponentName)
-    : () => {
-        throw new Error(LINKING_ERROR);
-      };

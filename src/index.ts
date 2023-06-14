@@ -1,6 +1,6 @@
 export { RNAdiscopeView as AdiscopeView } from './RNAdiscopeView';
 export {
-  adInitialize,
+  initialize,
   showRewardedVideo,
   showOfferwall,
   showDetail,
