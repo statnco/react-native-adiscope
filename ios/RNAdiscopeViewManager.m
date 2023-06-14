@@ -1,11 +1,19 @@
+//
+//  RNAdiscopeViewManager.m
+//  RNAdiscope
+//
+//  Created by surri on 6/14/23.
+//  Copyright © 2023 Facebook. All rights reserved.
+//
+
 #import <React/RCTViewManager.h>
 
-@interface ReactNativeAdiscopeViewManager : RCTViewManager
+@interface RNAdiscopeViewManager : RCTViewManager
 @end
 
-@implementation ReactNativeAdiscopeViewManager
+@implementation RNAdiscopeViewManager
 
-RCT_EXPORT_MODULE(ReactNativeAdiscopeView)
+RCT_EXPORT_MODULE(RNAdiscopeView)
 
 - (UIView *)view
 {
