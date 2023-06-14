@@ -4,7 +4,7 @@ package = JSON.parse(File.read(File.join(__dir__, "package.json")))
 folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
 
 Pod::Spec.new do |s|
-  s.name         = "statnco-react-native-adiscope"
+  s.name         = "RNAdiscope"
   s.version      = package["version"]
   s.summary      = package["description"]
   s.homepage     = package["homepage"]
@@ -16,7 +16,21 @@ Pod::Spec.new do |s|
 
   s.source_files = "ios/**/*.{h,m,mm}"
 
+  s.pod_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
+  s.user_target_xcconfig = { "EXCLUDED_ARCHS[sdk=iphonesimulator*]" => "arm64" }
+
   s.dependency "React-Core"
+  s.dependency "Adiscope", "2.1.8.0"
+  s.dependency "AdiscopeMediaAppLovin", "2.1.2.0"
+  s.dependency "AdiscopeMediaAdMob", "2.0.6.0"
+  s.dependency "AdiscopeMediaAdManager", "2.0.6.0"
+  s.dependency "AdiscopeMediaFAN", "2.1.2.0"
+  s.dependency "AdiscopeMediaMobVista", "2.1.1.0"
+  s.dependency "AdiscopeMediaUnityAds", "2.1.4.0"
+  s.dependency "AdiscopeMediaTapjoy", "2.1.4.0"
+  s.dependency "AdiscopeMediaIronsource", "2.1.0.0"
+  s.dependency "AdiscopeMediaVungle", "2.0.7.0"
+  s.dependency "AdiscopeMediaChartBoost", "2.1.2.0"
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
