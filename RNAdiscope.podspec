@@ -21,16 +21,6 @@ Pod::Spec.new do |s|
 
   s.dependency "React-Core"
   s.dependency "Adiscope", "2.1.8.0"
-  s.dependency "AdiscopeMediaAppLovin", "2.1.2.0"
-  s.dependency "AdiscopeMediaAdMob", "2.0.6.0"
-  s.dependency "AdiscopeMediaAdManager", "2.0.6.0"
-  s.dependency "AdiscopeMediaFAN", "2.1.2.0"
-  s.dependency "AdiscopeMediaMobVista", "2.1.1.0"
-  s.dependency "AdiscopeMediaUnityAds", "2.1.4.0"
-  s.dependency "AdiscopeMediaTapjoy", "2.1.4.0"
-  s.dependency "AdiscopeMediaIronsource", "2.1.0.0"
-  s.dependency "AdiscopeMediaVungle", "2.0.7.0"
-  s.dependency "AdiscopeMediaChartBoost", "2.1.2.0"
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
