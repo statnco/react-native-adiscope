@@ -1,26 +1,26 @@
 //
-//  RNAdiscope.m
+//  RNAdiscopeModule.m
 //  RNAdiscope
 //
 //  Created by surri on 6/14/23.
 //  Copyright © 2023 Facebook. All rights reserved.
 //
 
-#import "RNAdiscope.h"
+#import "RNAdiscopeModule.h"
 #import <Foundation/Foundation.h>
 #import <React/RCTLog.h>
 
-@implementation RNAdiscope
+@implementation RNAdiscopeModule
 RCT_EXPORT_MODULE()
 
 // << Adiscope SDK Initialize >>
 /// @param mediaId 사용하기 위한 Media의 고유한 ID
 /// @param mediaSecret MediaID와 매칭되는 SecretKey
 /// @param callBackTag 보상 콜백을 복수 개로 등록해서 사용할시에 어떤 보상 콜백을 사용할지 지정할 때 사용됩니다.
-RCT_EXPORT_METHOD(adInitialize)
+RCT_EXPORT_METHOD(initialize)
 {
     [[AdiscopeInterface sharedInstance] setMainDelegate:self];
-    [[AdiscopeInterface sharedInstance] setUserId:@"MyUserID"];
+    [[AdiscopeInterface sharedInstance] setUserId:@""];
     [[AdiscopeInterface sharedInstance] initialize:@"" mediaSecret:@"" callBackTag:@""];
 }
 
@@ -92,7 +92,7 @@ RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-    return std::make_shared<facebook::react::NativeRNAdiscopeSpecJSI>(params);
+    return std::make_shared<facebook::react::NativeRNAdiscopeModuleSpecJSI>(params);
 }
 
 #endif
