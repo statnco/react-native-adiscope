@@ -25,6 +25,13 @@ import com.nps.adiscope.reward.RewardedVideoAdListener;
 public class RNAdiscopeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "RNAdiscopeModule";
   private static final String TAG = RNAdiscopeModule.class.getName();
+  private static OfferwallAd mOfferwallAd;
+  private static RewardedVideoAd mRewardedVideoAd;
+  private static InterstitialAd mInterstitialAd;
+
+  private static OfferwallAdListener mOfferwallAdListener;
+  private static RewardedVideoAdListener mRewardedVideoAdListener;
+  private static InterstitialAdListener mInterstitialAdListener;
 
   public RNAdiscopeModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -35,6 +42,30 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
   public String getName() {
     return NAME;
   }
+
+  @ReactMethod
+  public void initialize() {
+    AdiscopeSdk.initialize(getCurrentActivity(), new AdiscopeInitializeListener() {
+        @Override
+        public void onInitialized(boolean isSuccess) {
+            if (isSuccess) {
+            // get rewardVideo singleton instance
+                Log.d(RNAdiscopeModule.class.getName(), ">>> called onInitialized : isSuccess -> true");
+                mRewardedVideoAd = AdiscopeSdk.getRewardedVideoAdInstance(getCurrentActivity());
+                mRewardedVideoAd.setRewardedVideoAdListener(mRewardedVideoAdListener);
+                mInterstitialAd = AdiscopeSdk.getInterstitialAdInstance(getCurrentActivity());
+                mInterstitialAd.setInterstitialAdListener(mInterstitialAdListener);
+                mOfferwallAd = AdiscopeSdk.getOfferwallAdInstance(getCurrentActivity());
+                mOfferwallAd.setOfferwallAdListener(mOfferwallAdListener);
+                AdiscopeSdk.setUserId("androidTestId");
+            } else {
+                // Init 실패 에 대한 처리 Code
+                Log.d(RNAdiscopeModule.class.getName(), ">>> called onInitialized : isSuccess -> false");
+            }
+        }
+    });
+  }
+
 
   @ReactMethod
   public void showRewardedVideo(String unitId) {

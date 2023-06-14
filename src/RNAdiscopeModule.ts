@@ -17,8 +17,8 @@ const RNAdiscopeModule = NativeModules.RNAdiscopeModule
       }
     );
 
-export const adInitialize = () => {
-  RNAdiscopeModule.adInitialize();
+export const initialize = () => {
+  RNAdiscopeModule.initialize();
 };
 
 export const showRewardedVideo = (rvUnitId: string) => {
