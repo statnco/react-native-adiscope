@@ -17,23 +17,6 @@ const RNAdiscopeModule = NativeModules.RNAdiscopeModule
       }
     );
 
-export const initialize = () => {
-  RNAdiscopeModule.initialize();
-};
-
-export const showRewardedVideo = (rvUnitId: string) => {
-  RNAdiscopeModule.showRewardedVideo(rvUnitId);
-};
-export const showOfferwall = (offerwallUnitId: string) => {
-  console.log(JSON.stringify(RNAdiscopeModule));
-  RNAdiscopeModule.showOfferwall(offerwallUnitId);
-};
-export const showDetail = (
-  offerwallUnitId: string,
-  offerwallItemId: number
-) => {
-  RNAdiscopeModule.showDetail(offerwallUnitId, offerwallItemId);
-};
-export const showInterstitial = (interstitialUnitId: string) => {
-  RNAdiscopeModule.showInterstitial(interstitialUnitId);
+export const setUserId = (userId: string) => {
+  RNAdiscopeModule.setUserId(userId);
 };

@@ -148,5 +148,8 @@
         }
       ]
     ]
+  },
+  "dependencies": {
+    "use-deep-compare-effect": "^1.8.1"
   }
 }
