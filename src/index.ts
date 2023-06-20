@@ -4,5 +4,5 @@ import useInterstitial from './hooks/useInterstitial';
 
 export { RNAdiscopeView as AdiscopeView } from './RNAdiscopeView';
 
-export { setUserId } from './RNAdiscopeModule';
+export { initialize, setUserId } from './RNAdiscopeModule';
 export { useRewardedVideo, useInterstitial, useOfferwall };

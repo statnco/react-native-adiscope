@@ -17,6 +17,10 @@ const RNAdiscopeModule = NativeModules.RNAdiscopeModule
       }
     );
 
+export const initialize = (mediaId: string, mediaSecret: string) => {
+  RNAdiscopeModule.initialize(mediaId, mediaSecret);
+};
+
 export const setUserId = (userId: string) => {
   RNAdiscopeModule.setUserId(userId);
 };

@@ -17,11 +17,11 @@ RCT_EXPORT_MODULE()
 /// @param mediaId 사용하기 위한 Media의 고유한 ID
 /// @param mediaSecret MediaID와 매칭되는 SecretKey
 /// @param callBackTag 보상 콜백을 복수 개로 등록해서 사용할시에 어떤 보상 콜백을 사용할지 지정할 때 사용됩니다.
-RCT_EXPORT_METHOD(initialize)
+
+RCT_EXPORT_METHOD(initialize: (NSString *)mediaId mediaSecret:(NSString *)mediaSecret)
 {
     [[AdiscopeInterface sharedInstance] setMainDelegate:self];
-    [[AdiscopeInterface sharedInstance] setUserId:@""];
-    [[AdiscopeInterface sharedInstance] initialize:@"" mediaSecret:@"" callBackTag:@""];
+    [[AdiscopeInterface sharedInstance] initialize:mediaId mediaSecret:mediaSecret callBackTag:@""];
 }
 
 // initialize callback
@@ -87,6 +87,15 @@ RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
     [[AdiscopeInterface sharedInstance] showOfferwall:offerwallUnitID];
 }
 
+RCT_EXPORT_METHOD(addListener: (NSString *)eventName)
+{
+    RCTLogInfo(@">>> addListener %@", eventName);
+}
+RCT_EXPORT_METHOD(removeListeners: (NSNumber *)count)
+{
+    RCTLogInfo(@">>> removeListeners %@", count);
+}
+
 // Don't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
@@ -98,3 +107,4 @@ RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
 #endif
 
 @end
+
