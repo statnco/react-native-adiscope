@@ -414,7 +414,7 @@ PODS:
     - React-jsi (= 0.71.10)
     - React-logger (= 0.71.10)
     - React-perflogger (= 0.71.10)
-  - RNAdiscope (0.1.0):
+  - RNAdiscopeModule (0.1.0):
     - Adiscope (= 2.1.8.0)
     - React-Core
   - SocketRocket (0.6.0)
@@ -481,7 +481,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - RNAdiscope (from `../..`)
+  - RNAdiscopeModule (from `../..`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -570,7 +570,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
-  RNAdiscope:
+  RNAdiscopeModule:
     :path: "../.."
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
@@ -623,11 +623,11 @@ SPEC CHECKSUMS:
   React-RCTVibration: d13cc2d63286c633393d3a7f6f607cc2a09ec011
   React-runtimeexecutor: a9a1cd79996c9a0846e3232ecb25c64e1cc0172e
   ReactCommon: 65718685d4095d06b4b1af8042e12f1df2925c31
-  RNAdiscope: dc8737b7ccdbe5928d74fce209799566d892ea61
+  RNAdiscopeModule: 49dcb4edc3739b2865f5591b1075fadd28a1a239
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: e7ea9e590e27460d28911403b894722354d73479
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 3eca22a06673b838540b61722dddf05a0a819681
+PODFILE CHECKSUM: 156f3a9d3d904eb2ba65c21da82f6509e4f0e487
 
 COCOAPODS: 1.12.1

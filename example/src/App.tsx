@@ -1,55 +1,43 @@
-import * as React from 'react';
-
-import { Button, StyleSheet, Text, View } from 'react-native';
-import {
-  AdiscopeView,
-  initialize,
-  showRewardedVideo,
-  showOfferwall,
-  showDetail,
-  showInterstitial,
-} from '@statnco/react-native-adiscope';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import RewardedVideoButton from './components/RewardedVideoButton';
+import OfferwallButton from './components/OfferwallButton';
+import InterstitialButton from './components/InterstitialButton';
+import { setUserId, initialize } from '@statnco/react-native-adiscope';
 
 export default function App() {
-  const rvUnitId: string = '';
-  const offerwallUnitId: string = '';
-  const offerwallItemId: number = 0;
-  const interstitialUnitId: string = '';
-
-  React.useEffect(() => {
-    initialize();
+  useEffect(() => {
+    initialize('[yourMediaId]', '[yourMediaSecret]');
   }, []);
 
   return (
     <View style={styles.container}>
-      {/* <AdiscopeView color="#32a852" style={styles.box} /> */}
       <Text>React Native Adiscope Example</Text>
       <View style={styles.button}>
-        <Button
-          title="show RewardedVideo"
-          color="#352561"
-          onPress={() => showRewardedVideo(rvUnitId)}
+        <TouchableOpacity onPress={setUserId('[uniqueUserId]')}>
+          <Text>setUserId</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.button}>
+        <RewardedVideoButton
+          onOpened={() => console.log('on RewardedVideo Opened')}
+          onClosed={() => console.log('on RewardedVideo Closed')}
+          onRewarded={() => console.log('get Rewarded')}
+          onError={(error) => console.warn(error)}
         />
       </View>
       <View style={styles.button}>
-        <Button
-          title="show OfferWall"
-          color="#643456"
-          onPress={() => showOfferwall(offerwallUnitId)}
+        <OfferwallButton
+          onOpened={() => console.log('on Offerwall Opened')}
+          onClosed={() => console.log('on Offerwall Closed')}
+          onError={(error) => console.warn(error)}
         />
       </View>
       <View style={styles.button}>
-        <Button
-          title="show OfferWall Item"
-          color="#643456"
-          onPress={() => showDetail(offerwallUnitId, offerwallItemId)}
-        />
-      </View>
-      <View style={styles.button}>
-        <Button
-          title="show Interstitial"
-          color="#549283"
-          onPress={() => showInterstitial(interstitialUnitId)}
+        <InterstitialButton
+          onOpened={() => console.log('on Offerwall Opened')}
+          onClosed={() => console.log('on Offerwall Closed')}
+          onError={(error) => console.warn(error)}
         />
       </View>
     </View>
