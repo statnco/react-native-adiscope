@@ -91,7 +91,8 @@ RCT_EXPORT_METHOD(addListener: (NSString *)eventName)
 {
     RCTLogInfo(@">>> addListener %@", eventName);
 }
-RCT_EXPORT_METHOD(removeListeners: (NSNumber *)count)
+
+RCT_EXPORT_METHOD(removeListeners: (nonnull NSNumber *)count)
 {
     RCTLogInfo(@">>> removeListeners %@", count);
 }
