@@ -4,7 +4,7 @@
   "description": "React Native Module for Adiscope SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
-  "types": "lib/typescript/index.d.ts",
+  "types": "src/index.d.ts",
   "react-native": "src/index",
   "source": "src/index",
   "files": [
