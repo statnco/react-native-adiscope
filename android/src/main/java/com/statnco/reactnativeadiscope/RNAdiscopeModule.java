@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -38,7 +39,6 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
     public RNAdiscopeModule(ReactApplicationContext reactContext) {
         super(reactContext);
         mContext = reactContext;
-        initialize();
     }
 
     @Override
@@ -53,6 +53,7 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
         mContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
     }
 
+    @ReactMethod
     public void initialize() {
         if(!mContext.hasActiveCatalystInstance()) {
             return;
@@ -67,7 +68,6 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
                     mInterstitialAd.setInterstitialAdListener(mInterstitialAdListener());
                     mOfferwallAd = AdiscopeSdk.getOfferwallAdInstance(getCurrentActivity());
                     mOfferwallAd.setOfferwallAdListener(mOfferwallAdListener());
-                    AdiscopeSdk.setUserId("androidTestId12354");
                     AdiscopeSdk.getOptionSetterInstance(getCurrentActivity()).setChildYN("NO");
                 }
 
@@ -232,8 +232,13 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
       - 앱 실행 후 한번만 적용
     */
     @ReactMethod
-    public void setUserId(String userId) {
-        AdiscopeSdk.setUserId(userId);
+    public void setUserId(String userId, Promise promise) {
+        try {
+            AdiscopeSdk.setUserId(userId);
+            promise.resolve(userId);
+        } catch(Exception e) {
+            promise.reject("exception", "setUserId failure");
+        }
     }
 
     @ReactMethod

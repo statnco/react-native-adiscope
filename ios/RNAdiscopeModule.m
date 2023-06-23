@@ -8,10 +8,41 @@
 
 #import "RNAdiscopeModule.h"
 #import <Foundation/Foundation.h>
+#import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+#import <React/RCTEventDispatcher.h>
 #import <React/RCTLog.h>
 
 @implementation RNAdiscopeModule
+
+{
+  bool hasListeners;
+}
+
 RCT_EXPORT_MODULE()
+
+// Will be called when this module's first listener is added.
+-(void)startObserving {
+    hasListeners = YES;
+    // Set up any upstream listeners or background tasks as necessary
+}
+
+// Will be called when this module's last listener is removed, or on dealloc.
+-(void)stopObserving {
+    hasListeners = NO;
+    // Remove upstream listeners, stop unnecessary background tasks
+}
+
+- (NSArray<NSString *> *)supportedEvents {
+    return @[
+        @"onInitialized",
+        @"onOfferwallAdOpened",
+        @"onOfferwallAdClosed",
+        @"onOfferwallAdFailedToShow",
+        @"onRewardedVideoAdFailedToLoad",
+        @"onInterstitialAdFailedToLoad",
+    ];
+}
 
 // << Adiscope SDK Initialize >>
 /// @param mediaId 사용하기 위한 Media의 고유한 ID
@@ -25,16 +56,25 @@ RCT_EXPORT_METHOD(initialize: (NSString *)mediaId mediaSecret:(NSString *)mediaS
 }
 
 // initialize callback
-- (void)onInitialized:(BOOL)isSuccess {
-    RCTLogInfo(@">>> %d", isSuccess);
+- (void)onInitialized:(bool) isSuccess {
+    @try {
+        [self sendEventWithName:@"onInitialized" body:@{
+            @"initialized": @(isSuccess),
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"Debug: %@", exception);
+    }
 }
 
-// << setUserId >>
-RCT_EXPORT_METHOD(setUserId: (NSString *)userId) {
-    [[AdiscopeInterface sharedInstance] setUserId:userId];
+RCT_EXPORT_METHOD(setUserId: (NSString *)userId resolver:(RCTPromiseResolveBlock) resolve rejecter:(RCTPromiseRejectBlock) reject) {
+    @try {
+        resolve(@([[AdiscopeInterface sharedInstance] setUserId:userId]));
+    } @catch (NSException *exception) {
+        reject(@"exception", @"setUserId failure", nil);
+    }
 }
-// callback example
-RCT_EXPORT_METHOD(isRVLoaded:(NSString *)unitId Callback:(RCTResponseSenderBlock)callback)
+
+RCT_EXPORT_METHOD(isRVLoaded:(NSString *)unitId Callback:(RCTResponseSenderBlock) callback)
 {
     callback(@[@([[AdiscopeInterface sharedInstance] isLoaded:unitId])]);
 }
@@ -51,7 +91,17 @@ RCT_EXPORT_METHOD(showRewardedVideo: (NSString *)rewardedVideoUnitID)
     [[AdiscopeInterface sharedInstance] show];
 }
 - (void)onRewardedVideoAdFailedToLoad:(NSString *)unitID Error:(AdiscopeError *)error {
-    RCTLogInfo(@">>> onRewardedVideoAdFailedToLoad");
+
+    RCTLogInfo(@">>> onRewardedVideoAdFailedToLoad\n%@", error);
+
+    @try {
+        NSString *errorMessage = [NSString stringWithFormat:@"%@", error];
+        [self sendEventWithName:@"onRewardedVideoAdFailedToLoad" body:@{
+            @"error": errorMessage,
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"exception: %@", exception);
+    }
 }
 - (void)onRewardedVideoAdOpened:(NSString *)unitID {
     RCTLogInfo(@">>> onRewardedVideoAdOpened");
@@ -76,6 +126,15 @@ RCT_EXPORT_METHOD(showInterstitial: (NSString *)interstitialUnitID)
 }
 - (void)onInterstitialAdFailedToLoad:(NSString *)unitID Error:(AdiscopeError *)error {
     RCTLogInfo(@">>> onInterstitialAdFailedToLoad\n%@", error);
+
+    @try {
+        NSString *errorMessage = [NSString stringWithFormat:@"%@", error];
+        [self sendEventWithName:@"onInterstitialAdFailedToLoad" body:@{
+            @"error": errorMessage,
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"exception: %@", exception);
+    }
 }
 - (void)onInterstitialAdFailedToShow:(NSString *)unitID Error:(AdiscopeError *)error {
     RCTLogInfo(@">>> onInterstitialAdFailedToShow\n%@", error);
@@ -87,12 +146,34 @@ RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
     [[AdiscopeInterface sharedInstance] showOfferwall:offerwallUnitID];
 }
 
+- (void)onOfferwallAdOpened:(NSString *)unitID {
+    @try {
+        [self sendEventWithName:@"onOfferwallAdOpened" body:@{
+            @"opened": @(YES),
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"Debug: %@", exception);
+    }
+}
+- (void)onOfferwallAdClosed:(NSString *)unitID {
+    @try {
+        [self sendEventWithName:@"onOfferwallAdClosed" body:@{
+            @"opened": @(NO),
+        }];
+    } @catch (NSException *exception) {
+        NSLog(@"Debug: %@", exception);
+    }
+}
+- (void)onOfferwallAdFailedToShow:(NSString *)unitId Error:(AdiscopeError *)error {
+    RCTLogInfo(@">>> onOfferwallAdFailedToShow\n%@", error);
+}
+
 RCT_EXPORT_METHOD(addListener: (NSString *)eventName)
 {
     RCTLogInfo(@">>> addListener %@", eventName);
 }
 
-RCT_EXPORT_METHOD(removeListeners: (nonnull NSNumber *)count)
+RCT_EXPORT_METHOD(removeListeners: (NSNumber *)count)
 {
     RCTLogInfo(@">>> removeListeners %@", count);
 }

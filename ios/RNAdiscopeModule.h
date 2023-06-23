@@ -18,9 +18,11 @@
 @end
 #else
 #import <React/RCTBridgeModule.h>
+#import <React/RCTEventEmitter.h>
+
 #import <Adiscope/Adiscope.h>
 
-@interface RNAdiscopeModule : NSObject <RCTBridgeModule, AdiscopeDelegate>
+@interface RNAdiscopeModule : RCTEventEmitter <RCTBridgeModule, AdiscopeDelegate>
 @end
 
 #endif
