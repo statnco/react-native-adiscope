@@ -19,7 +19,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libRNAdiscope.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAdiscope.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		134814201AA4EA6300B7C361 /* libRNAdiscopeModule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNAdiscopeModule.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B6DCCA82A395D76005484C3 /* RNAdiscopeModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAdiscopeModule.m; sourceTree = "<group>"; };
 		1B6DCCA92A395DD4005484C3 /* RNAdiscopeModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNAdiscopeModule.h; sourceTree = "<group>"; };
 		1B6DCCAA2A395EB9005484C3 /* RNAdiscopeViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNAdiscopeViewManager.m; sourceTree = "<group>"; };
@@ -39,7 +39,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libRNAdiscope.a */,
+				134814201AA4EA6300B7C361 /* libRNAdiscopeModule.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* RNAdiscope */ = {
+		58B511DA1A9E6C8500147676 /* RNAdiscopeModule */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNAdiscope" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNAdiscopeModule" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -69,9 +69,9 @@
 			);
 			dependencies = (
 			);
-			name = RNAdiscope;
+			name = RNAdiscopeModule;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libRNAdiscope.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libRNAdiscopeModule.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -88,7 +88,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNAdiscope" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNAdiscopeModule" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -101,7 +101,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* RNAdiscope */,
+				58B511DA1A9E6C8500147676 /* RNAdiscopeModule */,
 			);
 		};
 /* End PBXProject section */
@@ -223,7 +223,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNAdiscope;
+				PRODUCT_NAME = RNAdiscopeModule;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -239,7 +239,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = RNAdiscope;
+				PRODUCT_NAME = RNAdiscopeModule;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -247,7 +247,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNAdiscope" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "RNAdiscopeModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -256,7 +256,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNAdiscope" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNAdiscopeModule" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

@@ -21,14 +21,19 @@
 
 RCT_EXPORT_MODULE()
 
+- (dispatch_queue_t)methodQueue
+{
+    return dispatch_get_main_queue();
+}
+
 // Will be called when this module's first listener is added.
--(void)startObserving {
+- (void)startObserving {
     hasListeners = YES;
     // Set up any upstream listeners or background tasks as necessary
 }
 
 // Will be called when this module's last listener is removed, or on dealloc.
--(void)stopObserving {
+- (void)stopObserving {
     hasListeners = NO;
     // Remove upstream listeners, stop unnecessary background tasks
 }
@@ -39,8 +44,15 @@ RCT_EXPORT_MODULE()
         @"onOfferwallAdOpened",
         @"onOfferwallAdClosed",
         @"onOfferwallAdFailedToShow",
+        @"onRewardedVideoAdOpened",
+        @"onRewardedVideoAdClosed",
+        @"onRewarded",
         @"onRewardedVideoAdFailedToLoad",
+        @"onRewardedVideoAdFailedToShow",
+        @"onInterstitialAdOpened",
+        @"onInterstitialAdClosed",
         @"onInterstitialAdFailedToLoad",
+        @"onInterstitialAdFailedToShow",
     ];
 }
 
@@ -68,7 +80,8 @@ RCT_EXPORT_METHOD(initialize: (NSString *)mediaId mediaSecret:(NSString *)mediaS
 
 RCT_EXPORT_METHOD(setUserId: (NSString *)userId resolver:(RCTPromiseResolveBlock) resolve rejecter:(RCTPromiseRejectBlock) reject) {
     @try {
-        resolve(@([[AdiscopeInterface sharedInstance] setUserId:userId]));
+        [[AdiscopeInterface sharedInstance] setUserId:userId];
+        resolve(userId);
     } @catch (NSException *exception) {
         reject(@"exception", @"setUserId failure", nil);
     }
@@ -166,16 +179,6 @@ RCT_EXPORT_METHOD(showOfferwall: (NSString *)offerwallUnitID)
 }
 - (void)onOfferwallAdFailedToShow:(NSString *)unitId Error:(AdiscopeError *)error {
     RCTLogInfo(@">>> onOfferwallAdFailedToShow\n%@", error);
-}
-
-RCT_EXPORT_METHOD(addListener: (NSString *)eventName)
-{
-    RCTLogInfo(@">>> addListener %@", eventName);
-}
-
-RCT_EXPORT_METHOD(removeListeners: (NSNumber *)count)
-{
-    RCTLogInfo(@">>> removeListeners %@", count);
 }
 
 // Don't compile this code when we build for the old architecture.
