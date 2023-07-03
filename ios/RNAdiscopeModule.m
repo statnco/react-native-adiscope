@@ -133,7 +133,7 @@ RCT_EXPORT_METHOD(showInterstitial: (NSString *)interstitialUnitID)
     [[AdiscopeInterface sharedInstance] loadInterstitial:interstitialUnitID];
 }
 // interstitial callbacks
-- (void)onInterstitialAdLoaded {
+- (void)onInterstitialAdLoaded:(NSString *)unitID {
     RCTLogInfo(@">>> onInterstitialAdLoaded");
     [[AdiscopeInterface sharedInstance] showInterstitial];
 }
