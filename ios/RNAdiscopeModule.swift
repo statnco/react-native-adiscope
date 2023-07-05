@@ -149,7 +149,7 @@ class RNAdiscopeModule: RCTEventEmitter {
     }
 
     @objc
-    func onOfferwallAdFailedToShow(_ unitID: String, error: AdiscopeError) -> Void {
-        sendEvent(withName: "onOfferwallAdFailedToShow", body: ["opened": false, "error": error])
+    func onOfferwallAdFailedToShow(_ unitID: String, Error error: AdiscopeError) -> Void {
+        sendEvent(withName: "onOfferwallAdFailedToShow", body: ["opened": false, "error": "\(error)"])
     }
 }
