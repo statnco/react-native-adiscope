@@ -39,7 +39,6 @@ export default function useRewardedVideo(rewardedUnitId: string | null): any {
     const listeners = [
       eventEmitter.addListener('onRewardedVideoAdFailedToLoad', (error) => {
         setState({ error });
-        console.warn(error);
       }),
       eventEmitter.addListener(
         'onRewardedVideoAdOpened',
@@ -54,7 +53,6 @@ export default function useRewardedVideo(rewardedUnitId: string | null): any {
       ),
       eventEmitter.addListener('onRewardedVideoAdFailedToShow', (error) => {
         setState({ error });
-        console.warn(error);
       }),
     ];
     return () => {
@@ -63,12 +61,12 @@ export default function useRewardedVideo(rewardedUnitId: string | null): any {
   }, []);
 
   const show = useCallback(async () => {
-    return await new Promise((resolve) => {
+    return await new Promise((resolve, reject) => {
       try {
         RNAdiscopeModule.showRewardedVideo(rewardedUnitId);
         resolve(true);
       } catch (error) {
-        resolve(error);
+        reject(error);
       }
     });
   }, [rewardedUnitId]);

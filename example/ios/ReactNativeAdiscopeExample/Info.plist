@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AppLovinSdkKey</key>
+	<string>[Your AppLovinSdkKey]</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -43,8 +45,6 @@
 	<string></string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string></string>
-    <key>GADIsAdManagerApp</key>
-  	<true/>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>

@@ -23,21 +23,21 @@ export default function App() {
           onOpened={() => console.log('on RewardedVideo Opened')}
           onClosed={() => console.log('on RewardedVideo Closed')}
           onRewarded={() => console.log('get Rewarded')}
-          onError={(error) => console.warn(error)}
+          onError={(error) => console.warn('RewardedVideo error: ', error)}
         />
       </View>
       <View style={styles.button}>
         <OfferwallButton
           onOpened={() => console.log('on Offerwall Opened')}
           onClosed={() => console.log('on Offerwall Closed')}
-          onError={(error) => console.warn(error)}
+          onError={(error) => console.warn('Offerwall error: ', error)}
         />
       </View>
       <View style={styles.button}>
         <InterstitialButton
-          onOpened={() => console.log('on Offerwall Opened')}
-          onClosed={() => console.log('on Offerwall Closed')}
-          onError={(error) => console.warn(error)}
+          onOpened={() => console.log('on Interstitial Opened')}
+          onClosed={() => console.log('on Interstitial Closed')}
+          onError={(error) => console.warn('Interstitial error: ', error)}
         />
       </View>
     </View>

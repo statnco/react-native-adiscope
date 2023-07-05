@@ -101,8 +101,8 @@ android {
         versionCode 1
         versionName "1.0"
         manifestPlaceholders = [
-            adiscope_media_id: "",
-            adiscope_media_secret: "",
+            adiscope_media_id: "[your adiscope media id]",
+            adiscope_media_secret: "[your adiscope media secret]",
             adiscope_sub_domain: ""
         ]
     }

@@ -35,25 +35,24 @@ export default function useOfferwall(offerwallUnitId: string | null): any {
   >((prevState, newState) => ({ ...prevState, ...newState }), initialState);
 
   const show = useCallback(async () => {
-    return await new Promise((resolve) => {
-      try {
-        RNAdiscopeModule.showOfferwall(offerwallUnitId);
-        resolve(true);
-      } catch (error) {
-        resolve(error);
-      }
-    });
+    RNAdiscopeModule.showOfferwall(offerwallUnitId)
+      .then((data: any) => {
+        console.log({ data });
+      })
+      .catch((error: any) => {
+        console.log(JSON.stringify(error), 'error');
+      });
   }, [offerwallUnitId]);
 
   useEffect(() => {
     const listeners = [
-      eventEmitter.addListener('onOfferwallAdOpened', (res) => {
+      eventEmitter.addListener('onOfferwallAdOpened', () => {
         setState({ opened: true });
       }),
       eventEmitter.addListener('onOfferwallAdFailedToShow', (error) =>
         setState({ error })
       ),
-      eventEmitter.addListener('onOfferwallAdClosed', (res) => {
+      eventEmitter.addListener('onOfferwallAdClosed', () => {
         setState({ opened: false });
       }),
     ];

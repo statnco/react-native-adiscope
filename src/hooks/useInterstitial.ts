@@ -40,9 +40,10 @@ export default function useInterstitial(
 
   useEffect(() => {
     const listeners = [
-      eventEmitter.addListener('onInterstitialAdFailedToLoad', (error) =>
-        setState({ error })
-      ),
+      eventEmitter.addListener('onInterstitialAdFailedToLoad', (error) => {
+        console.log('onInterstitialAdFailedToLoad', error);
+        setState({ error });
+      }),
       eventEmitter.addListener('onInterstitialAdOpened', ({ data: opened }) =>
         setState({ opened })
       ),
@@ -60,12 +61,12 @@ export default function useInterstitial(
   }, []);
 
   const show = useCallback(async () => {
-    return await new Promise((resolve) => {
+    return await new Promise((resolve, reject) => {
       try {
         RNAdiscopeModule.showInterstitial(interstitialUnitId);
         resolve(true);
       } catch (error) {
-        resolve(error);
+        reject(error);
       }
     });
   }, [interstitialUnitId]);
