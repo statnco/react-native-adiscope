@@ -37,23 +37,21 @@ export default function useRewardedVideo(rewardedUnitId: string | null): any {
   >((prevState, newState) => ({ ...prevState, ...newState }), initialState);
   useEffect(() => {
     const listeners = [
-      eventEmitter.addListener('onRewardedVideoAdFailedToLoad', (error) => {
-        setState({ error });
-      }),
-      eventEmitter.addListener(
-        'onRewardedVideoAdOpened',
-        ({ data: { opened } }) => setState({ opened })
+      eventEmitter.addListener('onRewardedVideoAdFailedToLoad', ({ error }) =>
+        setState({ error })
       ),
-      eventEmitter.addListener(
-        'onRewardedVideoAdClosed',
-        ({ data: { opened } }) => setState({ opened })
+      eventEmitter.addListener('onRewardedVideoAdOpened', ({ opened }) =>
+        setState({ opened })
       ),
-      eventEmitter.addListener('onRewarded', ({ data: { rewarded } }) =>
+      eventEmitter.addListener('onRewardedVideoAdClosed', ({ opened }) =>
+        setState({ opened })
+      ),
+      eventEmitter.addListener('onRewarded', ({ rewarded }) =>
         setState({ rewarded })
       ),
-      eventEmitter.addListener('onRewardedVideoAdFailedToShow', (error) => {
-        setState({ error });
-      }),
+      eventEmitter.addListener('onRewardedVideoAdFailedToShow', ({ error }) =>
+        setState({ error })
+      ),
     ];
     return () => {
       listeners.forEach((listener) => listener?.remove());

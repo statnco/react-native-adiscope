@@ -40,18 +40,16 @@ export default function useInterstitial(
 
   useEffect(() => {
     const listeners = [
-      eventEmitter.addListener('onInterstitialAdFailedToLoad', (error) => {
-        console.log('onInterstitialAdFailedToLoad', error);
-        setState({ error });
-      }),
-      eventEmitter.addListener('onInterstitialAdOpened', ({ data: opened }) =>
+      eventEmitter.addListener('onInterstitialAdFailedToLoad', ({ error }) =>
+        setState({ error })
+      ),
+      eventEmitter.addListener('onInterstitialAdOpened', ({ opened }) =>
         setState({ opened })
       ),
-
-      eventEmitter.addListener('onInterstitialAdClosed', ({ data: opened }) =>
+      eventEmitter.addListener('onInterstitialAdClosed', ({ opened }) =>
         setState({ opened })
       ),
-      eventEmitter.addListener('onInterstitialAdFailedToShow', (error) =>
+      eventEmitter.addListener('onInterstitialAdFailedToShow', ({ error }) =>
         setState({ error })
       ),
     ];
