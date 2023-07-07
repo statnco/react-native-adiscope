@@ -39,7 +39,11 @@
   "keywords": [
     "react-native",
     "ios",
-    "android"
+    "android",
+    "statnco",
+    "adiscope",
+    "admob",
+    "ad"
   ],
   "repository": "https://github.com/statnco/react-native-adiscope",
   "author": "surri <thekeh@hotmail.com> (https://github.com/surri)",
