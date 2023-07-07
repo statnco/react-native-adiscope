@@ -25,15 +25,9 @@ export const initialize = (mediaId: string, mediaSecret: string) => {
 };
 
 export const setUserId = (userId: string) => {
-  RNAdiscopeModule.setUserId(userId)
-    .then((data: any) => {
-      console.log({ data });
-    })
-    .catch((error: any) => {
-      console.log(JSON.stringify(error));
-    });
+  return RNAdiscopeModule.setUserId(userId)
+    .then((data: any) => data)
+    .catch((error: any) => error);
 };
 
-eventEmitter.addListener('onInitialized', (data: any) =>
-  console.log('onInitialized', data)
-);
+eventEmitter.addListener('onInitialized', (data: any) => data);

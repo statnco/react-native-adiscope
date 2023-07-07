@@ -47,9 +47,7 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
         return NAME;
     }
 
-    public static void sendEvent(String eventName, @Nullable WritableMap data) {
-        WritableMap params = Arguments.createMap();
-        params.putMap("data", data);
+    public static void sendEvent(String eventName, @Nullable WritableMap params) {
         mContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
     }
 
