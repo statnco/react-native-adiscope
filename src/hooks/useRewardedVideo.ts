@@ -19,21 +19,26 @@ const RNAdiscopeModule = NativeModules.RNAdiscopeModule
     );
 const eventEmitter = new NativeEventEmitter(RNAdiscopeModule);
 
-const initialState: rewardedVideoState = {
+const initialState: RewardedVideoState = {
   opened: false,
-  rewarded: false,
+  rewarded: null,
   error: undefined,
 };
 
-interface rewardedVideoState {
+interface RewardedState {
+  unit: string;
+  amount: number;
+}
+
+interface RewardedVideoState {
   opened: boolean;
-  rewarded: boolean;
+  rewarded: RewardedState | null;
   error: any;
 }
 
 export default function useRewardedVideo(rewardedUnitId: string | null): any {
   const [state, setState] = useReducer<
-    Reducer<rewardedVideoState, Partial<rewardedVideoState>>
+    Reducer<RewardedVideoState, Partial<RewardedVideoState>>
   >((prevState, newState) => ({ ...prevState, ...newState }), initialState);
   useEffect(() => {
     const listeners = [

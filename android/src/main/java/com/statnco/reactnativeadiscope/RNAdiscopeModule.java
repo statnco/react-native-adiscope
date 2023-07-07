@@ -122,9 +122,13 @@ public class RNAdiscopeModule extends ReactContextBaseJavaModule {
             */
             @Override
             public void onRewarded(String unitId, RewardItem rewardItem) {
-                WritableMap payload = Arguments.createMap();
-                payload.putBoolean("rewarded", true);
-                sendEvent("onRewarded", payload);
+                WritableMap body = Arguments.createMap();
+                WritableMap rewarded = Arguments.createMap();
+                rewarded.putString("unit", rewardItem.getType());
+                rewarded.putInt("amount", (int)rewardItem.getAmount());
+                body.putBoolean("opened", true);
+                body.putMap("rewarded", rewarded);
+                sendEvent("onRewarded", body);
             }
             /*
              *  - Rewarded Video(RV) 광고를 받아 왔으나(load) 재생하지 못했을 때 자동 호출되는 함수

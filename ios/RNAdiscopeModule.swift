@@ -97,8 +97,15 @@ class RNAdiscopeModule: RCTEventEmitter {
     }
 
     @objc
-    func onRewarded(_ unitID: String, Rewarded rewarded: AdiscopeRewardItem) -> Void {
-        sendEvent(withName: "onRewarded", body: ["opened": true, "rewarded": rewarded])
+    func onRewarded(_ unitID: String, Item rewarded: AdiscopeRewardItem) -> Void {
+        let body: [String: Any] = [
+            "opened": true,
+            "rewarded": [
+                "unit": rewarded.unit,
+                "amount": rewarded.amount
+            ]
+        ]
+        sendEvent(withName: "onRewarded", body: body)
     }
 
     // << Interstitial >>
