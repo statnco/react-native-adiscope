@@ -61,6 +61,7 @@ export default function useInterstitial(
   const show = useCallback(async () => {
     return await new Promise((resolve, reject) => {
       try {
+        setState({ error: undefined });
         RNAdiscopeModule.showInterstitial(interstitialUnitId);
         resolve(true);
       } catch (error) {

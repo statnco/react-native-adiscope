@@ -61,6 +61,7 @@ export default function useRewardedVideo(rewardedUnitId: string | null): any {
   const show = useCallback(async () => {
     return await new Promise((resolve, reject) => {
       try {
+        setState({ error: undefined });
         RNAdiscopeModule.showRewardedVideo(rewardedUnitId);
         resolve(true);
       } catch (error) {
